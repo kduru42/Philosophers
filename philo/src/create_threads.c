@@ -12,14 +12,15 @@
 
 #include "../inc/philo.h"
 
-int	create_threads(t_data *d)
+int	create_threads(t_philo *d)
 {
 	t_philo	*p;
 	int	i;
 
 	i = 0;
-	while (i < d->args.number_of_philosophers)
+	while (i < d->number_of_philosophers)
 	{
+		d->which_philo = i;
 		p = &(d->philos[i]);
 		if (pthread_create(&d->philos[i].thread, NULL,
 				&routine, (void *)p) != 0)
@@ -31,7 +32,7 @@ int	create_threads(t_data *d)
 		return (0);
 	usleep(100);
 	i = 0;
-	while (i < d->args.number_of_philosophers)
+	while (i < d->number_of_philosophers)
 	{
 		if (pthread_join(d->philos[i].thread, NULL) != 0)
 			return (0);
@@ -42,14 +43,14 @@ int	create_threads(t_data *d)
 	return (1);
 }
 
-void	create_philos(t_data *d)
+void	create_philos(t_philo *d)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 1;
-	while (i < d->args.number_of_philosophers - 1)
+	while (i < d->number_of_philosophers - 1)
 	{
 		init_philo_datas(d, i, j);
 		i++;
@@ -59,12 +60,12 @@ void	create_philos(t_data *d)
 	init_philo_datas(d, i, j);
 }
 
-int	destroy_mutexes(t_data *d)
+int	destroy_mutexes(t_philo *d)
 {
 	int	i;
 
 	i = 0;
-	while (i < d->args.number_of_philosophers)
+	while (i < d->number_of_philosophers)
 	{
 		if (pthread_mutex_destroy(&d->forks[i]) != 0)
 			return (0);
@@ -77,7 +78,7 @@ int	destroy_mutexes(t_data *d)
 	return (1);
 }
 
-void	init_philo_datas(t_data *d, int i, int j)
+void	init_philo_datas(t_philo *d, int i, int j)
 {
 	int	is_death;
 

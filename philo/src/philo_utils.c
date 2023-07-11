@@ -46,7 +46,7 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-void	free_data(t_data *d)
+void	free_data(t_philo *d)
 {
 	free(d->forks);
 	free(d->philos);

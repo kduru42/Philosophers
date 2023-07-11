@@ -36,27 +36,23 @@ int	check_args(int argc, char **argv)
 	return (1);
 }
 
-int	init_args(t_data **d, int argc, char **argv)
+int	init_args(t_philo **d, int argc, char **argv)
 {
-	int	i;
-
-	i = 0;
 	if (!check_args(argc, argv))
 		return (0);
-	(*d)->args.number_of_philosophers = ft_atoi(argv[1]);
-	(*d)->args.time_to_die = ft_atoi(argv[2]);
-	(*d)->args.time_to_eat = ft_atoi(argv[3]);
-	(*d)->args.time_to_sleep = ft_atoi(argv[4]);
+    *d = (t_philo*)malloc(sizeof(t_philo));
+	(*d)->number_of_philosophers = ft_atoi(argv[1]);
+	(*d)->time_to_die = ft_atoi(argv[2]);
+	(*d)->time_to_eat = ft_atoi(argv[3]);
+	(*d)->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-		(*d)->args.philosopher_must_eat = ft_atoi(argv[5]);
+		(*d)->philosopher_must_eat = ft_atoi(argv[5]);
 	else
-		(*d)->args.philosopher_must_eat = 0;
+		(*d)->philosopher_must_eat = 0;
 	(*d)->philos = (t_philo *)malloc(sizeof(t_philo)
-			* (*d)->args.number_of_philosophers);
+			* (*d)->number_of_philosophers);
 	(*d)->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
-			* (*d)->args.number_of_philosophers);
+			* (*d)->number_of_philosophers);
 	(*d)->t = get_time();
-	while (i < (*d)->args.number_of_philosophers)
-		(*d)->philos[i].args = (*d)->args;
 	return (1);
 }

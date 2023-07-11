@@ -1,6 +1,6 @@
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -pthread -g -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -rf
 
 SRCS = ./src/create_threads.c ./src/init_data.c ./src/philo_utils.c ./src/routine.c  ./src/eat_sleep_think.c ./src/init_forks.c ./src/get_time.c 

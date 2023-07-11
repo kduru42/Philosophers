@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_data	*d;
+	t_philo	*d;
 
 	if (!init_args(&d, argc, argv))
 	{
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	create_philos(d);
 	if (!init_forks(d))
 		return (0);
-	if (d->args.number_of_philosophers == 1)
+	if (d->number_of_philosophers == 1)
 	{
 		one_philo(d);
 		return (0);

@@ -18,14 +18,15 @@ void	*routine(void *arg)
 	int		i;
 
 	p = (t_philo *)arg;
+	i = p->which_philo;
 /* 	if ((i + 1) % 2 == 0)
 	{
 		print_status(d, i, "is thinking");
 		usleep(1600);
 	} */
-	if (p->args.philosopher_must_eat != 0)
+	if (p->philosopher_must_eat != 0)
 	{
-		while (p->eat_time < p->args.philosopher_must_eat
+		while (p->eat_time < p->philosopher_must_eat
 			&& *(p->is_death) == 0)
 			if (!routine_execute(p, i))
 				break ;
@@ -43,7 +44,7 @@ int	routine_execute(t_philo *p, int i)
 {
 	if (!philo_eat(p, i))
 		return (0);
-	if (p->eat_time != p->args.philosopher_must_eat)
+	if (p->eat_time != p->philosopher_must_eat)
 	{
 		if (!philo_sleep(p, i))
 			return (0);
@@ -55,14 +56,14 @@ int	routine_execute(t_philo *p, int i)
 
 void	*check_is_dead(void *arg)
 {
-	t_data	*d;
+	t_philo	*d;
 	int		i;
 
-	d = (t_data *)arg;
+	d = (t_philo *)arg;
 	i = 0;
-	if (d->args.philosopher_must_eat != 0)
+	if (d->philosopher_must_eat != 0)
 	{
-		while (d->philos[i].eat_time < d->args.philosopher_must_eat
+		while (d->philos[i].eat_time < d->philosopher_must_eat
 			&& *(d->philos[i].is_death) == 0)
 			if (philo_is_dead(d, &i) == 1)
 				break ;
@@ -76,10 +77,10 @@ void	*check_is_dead(void *arg)
 	return (NULL);
 }
 
-void	one_philo(t_data *d)
+void	one_philo(t_philo *d)
 {
 	printf("%lld 1 has taken a fork\n", get_time() - d->t);
-	usleep(d->args.time_to_die * 1000);
+	usleep(d->time_to_die * 1000);
 	printf("%lld 1 died\n", get_time() - d->t);
 	free_data(d);
 }
