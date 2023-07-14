@@ -6,7 +6,7 @@
 /*   By: kduru <kduru@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 04:35:16 by kduru             #+#    #+#             */
-/*   Updated: 2023/07/13 04:35:19 by kduru            ###   ########.fr       */
+/*   Updated: 2023/07/14 20:57:03 by kduru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_check_args(int argc, char **argv)
 	int	j;
 
 	i = 1;
+	if (ft_atol(argv[1]) == 0)
+		return (0);
 	while (i < argc)
 	{
 		j = 0;

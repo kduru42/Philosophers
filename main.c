@@ -6,7 +6,7 @@
 /*   By: kduru <kduru@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 04:37:01 by kduru             #+#    #+#             */
-/*   Updated: 2023/07/13 04:37:04 by kduru            ###   ########.fr       */
+/*   Updated: 2023/07/14 20:55:28 by kduru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int	main(int argc, char **argv)
 		return (3);
 	ft_init_philos(philo, argc, argv);
 	ft_init_mutex(philo, argv, forks, death);
+	if (ft_atol(argv[1]) == 1)
+	{
+		ft_lonely_dinner(philo);
+		ft_free(philo, forks, death);
+		return (0);
+	}
 	ft_join_threads(philo, argv);
 	ft_free(philo, forks, death);
 	return (0);

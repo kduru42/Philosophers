@@ -6,7 +6,7 @@
 /*   By: kduru <kduru@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 04:37:30 by kduru             #+#    #+#             */
-/*   Updated: 2023/07/14 19:00:02 by kduru            ###   ########.fr       */
+/*   Updated: 2023/07/14 20:50:50 by kduru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,6 @@ void			*ft_dinner(void *args);
 void			ft_join_threads(t_philo *philo, char **argv);
 void			ft_free(t_philo *philo, pthread_mutex_t *forks,
 					pthread_mutex_t *death);
+int				ft_lonely_dinner(t_philo *philo);
+
 #endif
